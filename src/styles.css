@@ -47,6 +47,3 @@ body {
 .todo-item input[type=checkbox]:focus {
     outline: 0;
 }
-.todo-item p {
-
-}
