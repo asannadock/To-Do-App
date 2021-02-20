@@ -1,6 +1,10 @@
 import React from 'react'
-import TodoItem from './TodoItem'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import TodoForm from './components/TodoForm'
+import TodoItem from './components/TodoItem'
 import todosData from './todosList'
+import './App.css'
 
 class App extends React.Component {
     constructor() {
@@ -29,8 +33,13 @@ class App extends React.Component {
         const todoElements = this.state.todos.map ( todoItem => <TodoItem key={todoItem.id} id={todoItem.id} text={todoItem.text} completed={todoItem.completed} handleChange={this.handleChange} /> )
 
         return (
-            <div className="todo-list">
-                {todoElements}
+            <div className="App">
+                <Header />
+                <TodoForm />
+                <div className="todo-list">
+                    {todoElements}
+                </div>
+                <Footer />
             </div>
         )        
     }
