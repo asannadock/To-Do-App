@@ -2,12 +2,17 @@ import React from 'react'
 import TodoItem from '../components/TodoItem'
 // import todosData from '../todosList'
 
-function TodoList({ todos }) {
-    console.log(todos)
+function TodoList({ todos, setTodos }) {
     return (
         <div className="todo-list">
             {todos.map(todo => (
-                <TodoItem key={todo.id} task={todo.task} />
+                <TodoItem 
+                    key={todo.id} 
+                    task={todo.task}
+                    todo={todo}
+                    todos={todos} 
+                    setTodos={setTodos} 
+                />
             ))}
         </div>
     )

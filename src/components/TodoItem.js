@@ -1,11 +1,33 @@
 import React from 'react'
 
-function TodoItem({ task }) {
+function TodoItem({ task, todo, todos, setTodos }) {
+    function handleDelete() {
+       setTodos(todos.filter( (item) => item.id !== todo.id))
+    }
+
+    function handleChange() {
+        setTodos(todos.map( (item) => {
+            // Comparing the item that is clicked to, if it has the same id as the one from state.
+            if (item.id === todo.id) {
+                return (
+                    {...item, completed: !item.completed}
+                )
+            }
+            return item
+        }))
+    }
+
+    const completedTextStyle = {
+        fontStyle: "italic",
+        color: "#cdcdcd",
+        textDecoration: "line-through"
+    }
+
     return (
         <div className="todo-item">
-            <input type="checkbox" />
-            <p>{task}</p>
-            <button>X</button>
+            <input type="checkbox" checked={todo.completed} onChange={handleChange} />
+            <p style={todo.completed ? completedTextStyle : null}>{task}</p>
+            <button onClick={handleDelete}>X</button>
         </div>
     )
 }
