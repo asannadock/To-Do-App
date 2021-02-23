@@ -1,22 +1,77 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import './scss/index.scss'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import TodoForm from './components/TodoForm'
 import TodoList from './components/TodoList'
 import TodoActions from './components/TodoActions'
-import './App.css'
+// import './App.css'
 
 function App() {
-    // Creating a state for inputs
+    let n
+    // STATES
+    // create a state for inputs
     const [inputText, setInputText] = useState('')
-    // Creating a state to store all todos. We gonna have an array of objects ([]). And we gonna add inputText to this todos array by submit the form in the TodoForm component
+    // create a state to store all todos. We gonna have an array of objects ([]). And we gonna add inputText to this todos array by submit the form in the TodoForm component
     const [todos, setTodos] = useState([])
+    // create a state for the status of the filter
+    const [status, setStatus] = useState('all')
+    // create a state to store filtered todos. We need to have this because if we use filter 'completed' or 'active' which remove the todos that are not filtered, then we need to store them somewhere, and it is the initial 'todos' state ( const [todos, setTodos] = useState([]))
+    const [filteredTodos, setFilteredTodos] = useState([])
+    // create state for the active items, i.e. items left to complete
+    const [itemsLeftToComplete, setItemsLeftToComplete] = useState(n)
 
-    // Adding a new todo to the list
-    // function addTodo(todo) {
-    //     // Creating a new todos array by calling the setTodo function and passing in an array with the new todo, add it to the beginning and the old todos array spread over it
-    //     setTodos([todo, ...todos])
-    // } 
+    // USE EFFECT
+    // run only once when the app first loads
+    useEffect(() => {
+        getLocalTodos()
+        }, []
+    )
+    // run once the app first loads and when we add input items (todos) and use filter (status)
+    useEffect(() => {
+        handleFilter()
+        saveToLocalStorage()
+        getActiveTodos()
+        }, [todos, status]
+    )
+
+    // FUNCTIONS AND EVENTS
+    // handle todos filter - all, active, completed. The default filter status is 'all'. 
+    function handleFilter() {
+        switch(status) {
+            case 'completed':
+                setFilteredTodos(todos.filter(todo => todo.completed === true))
+                break
+            case 'active':
+                setFilteredTodos(todos.filter(todo => todo.completed === false))
+                break
+            default:
+                setFilteredTodos(todos)
+                break            
+        }
+    }
+    // get the number of active todos
+    function getActiveTodos() {
+        setItemsLeftToComplete(todos.filter(todo => todo.completed === false).length)
+    }
+
+    // SAVE TO LOCAL STORAGE
+    // We need to store our todos list in a local storage in order it to keep it in a browser after refreshing the app.
+    // In order to do this we need 1) to store the data in localStorage, 2) to parse the localStorage and load it in uesEffect ones the app first loads
+    // This function store the data to the localStorage. And we need this function to run in useEffect, so that data stores in local storage ones the app loads and ones the 'todos' and 'status' change.
+    function saveToLocalStorage() {
+        localStorage.setItem('todos', JSON.stringify(todos))
+    }
+    // We need this function in order to load the data from the localStorage. And we should run this function in useEffect only ones the app loads, that's why we have to use one more useEffect
+    function getLocalTodos() {
+        // check if there are todos to store. If not - then just add an empty array
+        if (localStorage.getItem('todos') === null) {
+            localStorage.setItem('todos', JSON.stringify([]))
+        } else {
+            let todosLocal = JSON.parse(localStorage.getItem('todos'))
+            setTodos(todosLocal)
+        }
+    }
 
     return (
         <div className="App">
@@ -25,13 +80,19 @@ function App() {
                 todos={todos} 
                 setTodos={setTodos} 
                 inputText={inputText} 
-                setInputText={setInputText} 
+                setInputText={setInputText}
             />
             <TodoList 
                 todos={todos} 
-                setTodos={setTodos} 
+                setTodos={setTodos}
+                filteredTodos={filteredTodos}
             />
-            <TodoActions />
+            <TodoActions 
+                todos={todos} 
+                setTodos={setTodos} 
+                setStatus={setStatus} 
+                itemsLeftToComplete={itemsLeftToComplete} 
+            />
             <Footer />
         </div>
     )        

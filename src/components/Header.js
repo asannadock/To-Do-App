@@ -3,7 +3,8 @@ import React from 'react'
 function Header() {
     return (
         <header>
-            <h1>TODO</h1>            
+            <h1>TODO</h1>
+            <div className="themeToggle"></div>        
         </header>
     )
 }
