@@ -1,0 +1,64 @@
+.todo-actions {       
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        font-size: .8rem;
+    
+        .count {
+            order: 1;
+            flex-basis: 50%;
+            padding: 1.1rem;
+            border-radius: 0 0 0 5px;
+            z-index: 1;
+        }
+
+        .filter {
+            order: 3;
+            flex: 0 0 100%;
+            text-align: center;
+            margin-top: 16px;
+            padding: 1.1rem;
+            border-radius: 5px;
+
+            button {
+                margin: 0 10px;
+                font-size: .9rem;
+            }
+        }
+
+        .clear-completed {
+            order: 2;
+            flex-basis: 50%;
+            text-align: right;
+            padding: 1.1rem;
+            border-radius: 0 0 5px 0;
+        }    
+
+}
+
+@include desktop {
+    .todo-actions {
+        .count {
+            order: 1;
+            flex-basis: auto;
+        }
+
+        .filter {
+            order: 3;
+            flex-basis: auto;
+            flex-grow: 2;
+            margin: 0;
+            border-radius: 0;
+
+            button {
+                font-size: .8rem;
+            }
+        }
+
+        .clear-completed {
+            order: 3;
+            flex-basis: auto;
+        }    
+    }
+}

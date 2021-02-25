@@ -1,0 +1,10 @@
+.todo-body {
+    @extend %extend-container;
+    margin-top: 10px;
+}
+
+@include desktop {
+    .todo-body {
+        margin-top: 30px;
+    }
+}

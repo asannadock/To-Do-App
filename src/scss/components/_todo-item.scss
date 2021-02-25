@@ -1,0 +1,49 @@
+.todo-item {    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1em;
+    border-bottom: 1px solid;
+    font-size: .9rem;
+    font-weight: 100;
+    cursor: pointer;
+
+    &:hover {
+        .todo-item-delete {
+            opacity: .6;
+        }
+    }
+
+    &-text {
+        flex-grow: 2;
+    }
+
+    &-checkmark {
+        margin-right: 1.1rem;
+    }
+
+    &-checkmark{
+        height: 20px;
+        width: 20px;
+        border: 1px solid;
+        border-radius: 50%; 
+    }
+
+    &-delete {
+        border: none;
+        opacity: 0;
+        height: 14px;
+        width: 14px;
+        background-color: transparent;
+        background-image: url('../../img/icon-cross.svg');
+        background-position: center;
+    }
+
+    &-completed {
+        .todo-item-text {
+            text-decoration: line-through;
+        }
+    }
+}
+
+

@@ -1,0 +1,23 @@
+// core
+@import 'scss/core/color';
+@import 'scss/core/reset';
+@import 'scss/core/typography';
+@import 'scss/core/helpers';
+@import 'scss/core/media-queries';
+
+// components
+@import 'scss/components/todo-body';
+@import 'scss/components/header';
+@import 'scss/components/footer';
+@import 'scss/components/todo-form';
+@import 'scss/components/todo-list';
+@import 'scss/components/todo-item';
+@import 'scss/components/todo-actions';
+
+// themes
+@import 'scss/themes/App-theme-dark.scss';
+@import 'scss/themes/App-theme-light.scss';
+
+.App {
+    height: 100vh;
+}

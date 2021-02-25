@@ -1,0 +1,15 @@
+%extend-container {
+    width: 90%;
+    max-width: 640px;
+    margin: auto;
+}
+
+@mixin mixin-button($color1, $color2) {
+    button {
+        color: $color1;
+
+        &:hover{
+            color: $color2;
+        }
+    }
+}

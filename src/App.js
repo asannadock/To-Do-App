@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import './scss/index.scss'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import TodoForm from './components/TodoForm'
 import TodoList from './components/TodoList'
 import TodoActions from './components/TodoActions'
-// import './App.css'
+import './App.scss'
 
 function App() {
     let n
@@ -20,19 +19,23 @@ function App() {
     const [filteredTodos, setFilteredTodos] = useState([])
     // create state for the active items, i.e. items left to complete
     const [itemsLeftToComplete, setItemsLeftToComplete] = useState(n)
+    // create state for color theme
+    const [theme, setTheme] = useState('light')
 
     // USE EFFECT
     // run only once when the app first loads
     useEffect(() => {
         getLocalTodos()
+        getThemeFromLocalStorage()
         }, []
     )
     // run once the app first loads and when we add input items (todos) and use filter (status)
     useEffect(() => {
         handleFilter()
         saveToLocalStorage()
+        saveThemeToLocalStorage()
         getActiveTodos()
-        }, [todos, status]
+        }, [todos, status, theme]
     )
 
     // FUNCTIONS AND EVENTS
@@ -62,6 +65,24 @@ function App() {
     function saveToLocalStorage() {
         localStorage.setItem('todos', JSON.stringify(todos))
     }
+
+    function saveThemeToLocalStorage() {
+        if (theme === 'light') {
+            localStorage.setItem('theme', JSON.stringify('light'))
+        } else if (theme === 'dark') {
+            localStorage.setItem('theme', JSON.stringify('dark'))
+        }
+    }
+
+    function getThemeFromLocalStorage() {
+        if (localStorage.getItem('theme') === null) {
+            localStorage.setItem('theme', JSON.stringify(''))
+        } else {
+            let themeLocal = JSON.parse(localStorage.getItem('theme'))
+            setTheme(themeLocal)
+        }  
+    }
+
     // We need this function in order to load the data from the localStorage. And we should run this function in useEffect only ones the app loads, that's why we have to use one more useEffect
     function getLocalTodos() {
         // check if there are todos to store. If not - then just add an empty array
@@ -74,25 +95,31 @@ function App() {
     }
 
     return (
-        <div className="App">
-            <Header />
-            <TodoForm 
-                todos={todos} 
-                setTodos={setTodos} 
-                inputText={inputText} 
-                setInputText={setInputText}
+        <div className={`App App-theme-${theme}`}>
+            <Header 
+                theme={theme}
+                setTheme={setTheme} 
             />
-            <TodoList 
-                todos={todos} 
-                setTodos={setTodos}
-                filteredTodos={filteredTodos}
-            />
-            <TodoActions 
-                todos={todos} 
-                setTodos={setTodos} 
-                setStatus={setStatus} 
-                itemsLeftToComplete={itemsLeftToComplete} 
-            />
+            <div className="todo-body">
+                <TodoForm 
+                    todos={todos} 
+                    setTodos={setTodos} 
+                    inputText={inputText} 
+                    setInputText={setInputText}
+                />
+                <TodoList 
+                    todos={todos} 
+                    setTodos={setTodos}
+                    filteredTodos={filteredTodos}
+                />
+                <TodoActions 
+                    todos={todos} 
+                    setTodos={setTodos}
+                    status={status}
+                    setStatus={setStatus} 
+                    itemsLeftToComplete={itemsLeftToComplete} 
+                />
+            </div>
             <Footer />
         </div>
     )        

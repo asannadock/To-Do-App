@@ -1,0 +1,14 @@
+.todo-form {
+    display: flex;
+    // padding: 0 2rem;
+    
+    input {
+        width: 100%;
+        padding: 1.1em;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        font-size: .9rem;
+        font-weight: 100;
+    }
+}

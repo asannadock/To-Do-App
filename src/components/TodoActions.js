@@ -1,6 +1,7 @@
 import React from 'react'
 
-function TodoActions({ todos, setTodos, setStatus, itemsLeftToComplete }) {   
+function TodoActions({ todos, setTodos, status, setStatus, itemsLeftToComplete }) { 
+    let state  
     function handleClick(e) {
         setStatus(e.target.value)
     }
@@ -10,16 +11,16 @@ function TodoActions({ todos, setTodos, setStatus, itemsLeftToComplete }) {
     }
 
     return (
-        <div className="todo-actions">
+        <div className="todo-actions">            
             <div className="count">{itemsLeftToComplete} {itemsLeftToComplete === 1 ? `item` : `items`} left</div>
             <div className="filter">
-                <button className="all" value="all" onClick={handleClick}>All</button>
-                <button className="active" value="active" onClick={handleClick}>Active</button>
-                <button className="completed" value="completed" onClick={handleClick}>Completed</button>
+                <button className={`all ${status === 'all' ? `selected` : ``}`} value="all" onClick={handleClick}>All</button>
+                <button className={`active ${status === 'active' ? `selected` : ``}`} value="active" onClick={handleClick}>Active</button>
+                <button className={`completed ${status === 'completed' ? `selected` : ``}`} value="completed" onClick={handleClick}>Completed</button>
             </div>
             <div className="clear-completed">
                 <button value="" onClick={handleClearCompleted}>Clear Completed</button>
-            </div>
+            </div>            
         </div>
     )
 }

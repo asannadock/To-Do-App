@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #3a7bfd;
+}
+
+img {
+  width: 100%;
+}
+
+button {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+body {
+  font-size: 18px;
+}
+
+body,
+input,
+button {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.App-theme-dark {
+  background-color: black;
+}

@@ -1,0 +1,19 @@
+.todo-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    .attribution {
+        @extend %extend-container;
+        text-align: center;
+        font-size: .8rem;
+
+        a {
+            opacity: .5;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

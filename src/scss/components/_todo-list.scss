@@ -1,0 +1,8 @@
+.todo-list {
+    // padding: 18px 2rem 0 2rem;
+    margin-top: 16px;
+
+    .todo-item:first-child {
+        border-radius: 5px 5px 0 0;
+    }
+}

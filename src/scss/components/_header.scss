@@ -1,0 +1,23 @@
+.todo-header {
+    height: 14vh;
+
+    &-container {
+        @extend %extend-container;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 3rem 0;
+    
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 100;
+            letter-spacing: .5rem;
+        }
+        
+        .todo-theme-toggle {
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+        }
+    }
+}

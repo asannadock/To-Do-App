@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #3a7bfd;
+}
+
+img {
+  width: 100%;
+}
+
+button {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+body {
+  font-size: 18px;
+}
+
+body,
+input,
+button {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.App-theme-light {
+  background-color: #fafafa;
+  background-image: url(../../img/bg-desktop-light.jpg);
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.App-theme-light .todo-header {
+  color: #fafafa;
+}
+
+.App-theme-light .todo-header .todo-theme-toggle {
+  background: url("../../img/icon-moon.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.App-theme-light .todo-form input::placeholder {
+  color: #d2d3db;
+}
+
+.App-theme-light .todo-list .todo-item {
+  background-color: #fff;
+  border-bottom-color: #d2d3db;
+  color: #484b6a;
+  box-shadow: 0px 5px 15px 5px rgba(210, 211, 219, 0.5);
+}
+
+.App-theme-light .todo-list .todo-item-completed .todo-item-text {
+  color: #d2d3db;
+}
+
+.App-theme-light .todo-list .todo-item-completed .checkmark-checked {
+  background: url("../../img/icon-check.svg") 10px/10px, linear-gradient(135deg, #57ddff, #c058f3);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.App-theme-light .todo-list .todo-item-checkmark {
+  border-color: #d2d3db;
+}
+
+.App-theme-light .todo-actions {
+  color: #d2d3db;
+}
+
+.App-theme-light .todo-actions .count {
+  background-color: #fff;
+  box-shadow: -5px 8px 15px 5px rgba(210, 211, 219, 0.5);
+}
+
+.App-theme-light .todo-actions .filter {
+  background-color: #fff;
+}
+
+.App-theme-light .todo-actions .filter button {
+  color: #9394a5;
+}
+
+.App-theme-light .todo-actions .filter .selected {
+  color: #3a7bfd;
+}
+
+.App-theme-light .todo-actions .clear-completed {
+  background-color: #fff;
+  box-shadow: 8px 8px 15px 1px rgba(210, 211, 219, 0.5);
+}
+
+.App-theme-light .todo-actions .clear-completed button {
+  color: #d2d3db;
+}

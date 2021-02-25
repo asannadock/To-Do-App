@@ -5,7 +5,7 @@ function TodoItem({ task, todo, todos, setTodos }) {
        setTodos(todos.filter( (item) => item.id !== todo.id))
     }
 
-    function handleChange() {
+    function handleClick() {
         setTodos(todos.map( (item) => {
             // Comparing the item that is clicked to, if it has the same id as the one from state.
             if (item.id === todo.id) {
@@ -17,17 +17,11 @@ function TodoItem({ task, todo, todos, setTodos }) {
         }))
     }
 
-    const completedTextStyle = {
-        fontStyle: "italic",
-        color: "#cdcdcd",
-        textDecoration: "line-through"
-    }
-
     return (
-        <div className="todo-item">
-            <input type="checkbox" checked={todo.completed} onChange={handleChange} />
-            <p style={todo.completed ? completedTextStyle : null}>{task}</p>
-            <button onClick={handleDelete}>X</button>
+        <div className={`todo-item ${todo.completed ? `todo-item-completed` : ''}`}>
+            <div className={`todo-item-checkmark ${todo.completed ? `checkmark-checked` : ''}`} onClick={handleClick}></div>
+            <p className="todo-item-text" onClick={handleClick}>{task}</p>
+            <button className="todo-item-delete" onClick={handleDelete}></button>
         </div>
     )
 }
