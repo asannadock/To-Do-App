@@ -1,7 +1,6 @@
 import React from 'react'
 
 function TodoActions({ todos, setTodos, status, setStatus, itemsLeftToComplete }) { 
-    let state  
     function handleClick(e) {
         setStatus(e.target.value)
     }
