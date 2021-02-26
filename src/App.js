@@ -66,6 +66,8 @@ function App() {
         localStorage.setItem('todos', JSON.stringify(todos))
     }
 
+    // Save theme in localStorage in order to keep it when reloading the app
+    // Save theme
     function saveThemeToLocalStorage() {
         if (theme === 'light') {
             localStorage.setItem('theme', JSON.stringify('light'))
@@ -73,7 +75,7 @@ function App() {
             localStorage.setItem('theme', JSON.stringify('dark'))
         }
     }
-
+    // Retrieve theme
     function getThemeFromLocalStorage() {
         if (localStorage.getItem('theme') === null) {
             localStorage.setItem('theme', JSON.stringify(''))
